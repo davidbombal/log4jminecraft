@@ -8,6 +8,6 @@ To run this project follow the following steps:
 3. Run the script jcomp_pyserv.py (python3 jcomp_pyserv.py). This compiles the Java payload to be ran, and also starts a python3 http.server. 
 
 # Acknowledgements for contributions: 
-# John Hammond : https://youtu.be/7qoPDq41xhQ
-# Moritz Bechler (For creating the Java Unmarshaller Security - MarshalSec) : https://github.com/mbechler/marshalsec
-# xiajun325 for clear instruction on how to use the MarshalSec tool : https://github.com/xiajun325/apache-log4j-rce-poc
+* John Hammond : https://youtu.be/7qoPDq41xhQ
+* Moritz Bechler (For creating the Java Unmarshaller Security - MarshalSec) : https://github.com/mbechler/marshalsec
+* xiajun325 for clear instruction on how to use the MarshalSec tool : https://github.com/xiajun325/apache-log4j-rce-poc
