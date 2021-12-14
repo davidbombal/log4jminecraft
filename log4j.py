@@ -39,10 +39,9 @@ except:
 #4. Download JDK-8u181
 # Check if the correct JDK is installed
 print("\nChecking JDK Version\n")
-jdk_check = subprocess.run(["javac", "-version"], capture_output=True)
-
-# Check if JDK is installed. The output shows up in the stderr instead of the stdout for some reason.
 try:
+    jdk_check = subprocess.run(["javac", "-version"], capture_output=True)
+    # Check if JDK is installed. The output shows up in the stderr instead of the stdout for some reason.
     print("\n**JDK already installed! Continuing!\n**")
 except:
     # Download the correct version of the JDK.
