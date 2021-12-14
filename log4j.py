@@ -29,10 +29,10 @@ subprocess.run(["sudo", "apt", "update"])
 
 #3. Install Maven
 # Check if Maven is installed
-mvn_check = subprocess.run(["mvn", "--version"], capture_output=True)
-if "Apache Maven" in mvn_check.stdout.decode():
+try:
+    mvn_check = subprocess.run(["mvn", "--version"], capture_output=True)
     print("\n**Apache Maven already installed! Continuing!\n**")
-else:
+except:
     print("\n**Installing Maven!**\n")
     subprocess.run(["sudo", "apt", "install", "maven"])
 
@@ -42,9 +42,9 @@ print("\nChecking JDK Version\n")
 jdk_check = subprocess.run(["javac", "-version"], capture_output=True)
 
 # Check if JDK is installed. The output shows up in the stderr instead of the stdout for some reason.
-if "javac 1.8.0_181" in jdk_check.stderr.decode():
+try:
     print("\n**JDK already installed! Continuing!\n**")
-else:
+except:
     # Download the correct version of the JDK.
     print("\n**Downloading JDK**\n")
     subprocess.run(["wget", "https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz"])
@@ -80,7 +80,7 @@ try:
 except:
     print("Something went wrong. Please check that you have the correct ip address")
     
-# We want to thank the following people for the contribution: 
+# We want to thank the following people for their contribution: 
 # John Hammond : https://youtu.be/7qoPDq41xhQ
 # Moritz Bechler (For creating the Java Unmarshaller Security - MarshalSec) : https://github.com/mbechler/marshalsec
 # xiajun325 for clear instruction on how to use the MarshalSec tool : https://github.com/xiajun325/apache-log4j-rce-poc
