@@ -24,8 +24,13 @@ except:
     exit()
 
 #2. Change directory
-cwd = os.getcwd()
-os.chdir("./marshalsec/")
+try:
+    cwd = os.getcwd()
+    os.chdir("./marshalsec/")
+except:
+    print("Couldn't change to the './marshalsec/' directory. Did you install the required dependencies using installer.py?")
+    exit()
+    
 print(os.listdir())
 subprocess.run(["mvn", "clean", "package", "-DskipTests"])
 
