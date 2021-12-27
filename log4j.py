@@ -34,7 +34,7 @@ try:
     print("\n**Apache Maven already installed! Continuing!\n**")
 except:
     print("\n**Installing Maven!**\n")
-    subprocess.run(["sudo", "apt", "install", "maven"])
+    subprocess.run(["sudo", "apt", "install", "maven", "wget"])
 
 #4. Download JDK-8u181
 # Check if the correct JDK is installed
