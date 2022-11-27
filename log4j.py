@@ -61,7 +61,7 @@ except:
         subprocess.run(["sudo", "update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_181/bin/javac", "100"])
         subprocess.run(["sudo", "update-alternatives", "--display", "java"])
         subprocess.run(["sudo", "update-alternatives", "--display", "javac"])
-        subprocess.run(["sudo", "update-alternatives", "--set", "/opt/jdk/jdk1.8.0_181/bin/java"])
+        subprocess.run(["sudo", "update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_181/bin/java"])
         subprocess.run(["java", "-version"])
 
 #6. Get MarshalSec repo
